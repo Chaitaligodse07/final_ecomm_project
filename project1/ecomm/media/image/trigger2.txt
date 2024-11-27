@@ -1,0 +1,44 @@
+Table name: employee
+
+Column name or Field name	Datatype
+emp_id(pk)	                   int
+name	                        varchar(50)
+dept	                        varchar(50)
+salary	                          float
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Table name: AuditLog
+
+Column name or Field Name	Datatype
+employee_id	                  int
+Action	                       varchar(50)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Write the SQL statement to create a trigger that logs deletions of an employee from the Employee  table into the AuditLog table.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Expected output
+
+employee_id	          Action
+1	            Employee Deleted
+2	            Employee Deleted
+3	            Employee Deleted
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+delimiter //
+CREATE TRIGGER after_employee_delete
+AFTER DELETE ON employee
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditLog (employee_id, Action)
+    VALUES (OLD.emp_id, 'Employee Deleted');
+END;
+
+delimiter ;
+
+DELETE FROM employee WHERE emp_id = 1;
+DELETE FROM employee WHERE emp_id = 2;
+DELETE FROM employee WHERE emp_id = 3;
+
+SELECT * FROM AuditLog;

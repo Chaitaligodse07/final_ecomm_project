@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="assest/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 shadow mt-5 p-5 mx-auto">      <!---col--divide our screen in 12--->
+                <h1>Registration Form</h1> 
+                <form method="POST" action="">
+              <!---username-->
+                <div class="mb-3">
+                    <label for="Input1" class="form-label">Username</label>
+                    <input type="email" class="form-control" id="Input1" placeholder="Enter a name">
+                  </div>
+                  <!---password-->
+                <div class="mb-3">
+                    <label for="Input2" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Input2" placeholder="Enter password">
+                  </div>
+                  <!---confirmpassword-->
+                <div class="mb-3">
+                    <label for="Input3" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="Input3" placeholder="Enter Confirm password">
+                  </div>
+                  <!---Submit Button-->
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-danger" value="Register">
+                    Already Register?<a href="login.html" style="text-decoration: none;">Login</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+           
+    </div>
+    <script src="assest/js/bootstrap.min.js"></script>
+</body>
+</html>

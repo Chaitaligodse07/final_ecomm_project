@@ -1,0 +1,58 @@
+Table name: employee
+
+Column name or Field name	Datatype
+emp_id(pk)	                  int
+name	                       varchar(50)
+dept	                       varchar(50)
+salary	                          float
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Table name: EmployeeCount
+
+Column name or Field Name	Datatype
+emp_count	                   int
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Create a trigger that automatically updates  a EmployeeCount table with the total number of  employees each time an employee is added or removed.
+
+Assume there are 10 employee in employee table and 1 employee record is inserted.
+
+Expected output
+
+emp_count
+11
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Now  employee is removed or deleted from the employee table
+
+Expected output
+
+emp_count
+10
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+delimiter //
+CREATE TRIGGER after_employee_insert
+AFTER INSERT ON employee
+FOR EACH ROW
+BEGIN
+    UPDATE EmployeeCount
+    SET emp_count = emp_count + 1;
+END;
+delimiter ;
+
+INSERT INTO EmployeeCount (emp_count) VALUES (10);
+
+DELETE FROM employee WHERE emp_id = 1;
+SELECT emp_count FROM EmployeeCount;
+
+
+delimiter //
+CREATE TRIGGER after_employee_delete
+AFTER DELETE ON employee
+FOR EACH ROW
+BEGIN
+    UPDATE EmployeeCount
+    SET emp_count = emp_count - 1;
+END;
+delimiter ;
